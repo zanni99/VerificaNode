@@ -1,0 +1,22 @@
+{
+  "name": "verificanode",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zanni99/VerificaNode.git"
+  },
+  "author": "Emanuele Zanni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zanni99/VerificaNode/issues"
+  },
+  "homepage": "https://github.com/zanni99/VerificaNode#readme",
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  }
+}
