@@ -1,58 +1,44 @@
 const fetch = require('node-fetch')
 
-const apiUrl = 'http://192.168.1.231:8080'
+const api = require('./api.js')
 
-const accreditamento = () => {
-	fetch(`${apiUrl}/accreditamento`,  { 
-	    method: 'POST',
-	    headers: { 
-	    	'Content-Type': 'application/json'
-	    },
-	        body: JSON.stringify({
-	    		nome: 'Emanuele Zanni'
-	    })
-    })
-	.then(res => {
-		if(res.ok) {
-			console.log('Accreditamento done!')
-			return
-		}
-		throw new Error(res.message)
+
+//api.accreditamento();
+
+/*api.getEs('1')
+.then(res => res.json())
+.then(({message, data}) => {
+	let result = 0
+	data.forEach(item => {
+		result = result + item
 	})
+	api.postEs(result, '1')
+	.then(res => res.ok ? console.log('Done') : console.log('Errore!'))
 	.catch(console.log)
-}
+})
+.catch(console.log)
+*/
 
-const es1 = () => 
-	fetch(`${apiUrl}/esercizi/1`, {
-		headers: {
-			'x-data' : true
-		}
-	})
-	.then(res => res.json())
-	.then(({message, data}) => {
-		let result
-		data.forEach(item => {
-			result = result + item
-		})
-		fetch(`${apiUrl}/esercizi/1`, {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json' 
-			},
-			body: JSON.stringify({
-				data: result
-			})
-		})
-		.then(res => {
-			if(res.ok){
-				console.log('Bravo!')
-				return
-			}
-			console.log(res.statusCode)
-		})
-		.catch(console.log)
-	})
+/*api.getEs('2')
+.then(res => res.json())
+.then(({message, data}) => {
+	const result = []
+	let min = parseInt(data[0])
+	data.forEach(item => {if(item < min) min = item})
+	data.forEach(item => result.push(item * min))
+	api.postEs(result, '2')
+	.then(res => res.ok ? console.log('Done') : console.log('Errore!'))
 	.catch(console.log)
+})
+.catch(console.log)*/
 
-//accreditamento();
-es1();
+api.getEs('3')
+.then(res => res.json())
+.then(({message, data}) => {
+	const result = []
+	data.forEach(item => {if(parseInt(item) <= 3) result.push(item)})
+	api.postEs(result, '3')
+	.then(res => res.ok ? console.log('Done') : console.log('Errore!'))
+	.catch(console.log)
+})
+.catch(console.log)
